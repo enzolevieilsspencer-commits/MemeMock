@@ -13,6 +13,7 @@
   "dependencies": {
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.12",
+    "lightweight-charts": "^5.0.8",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.2",
