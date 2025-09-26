@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-solana-green: #14F195;
+  --color-solana-teal: #00D18C;
+  --color-solana-purple: #9945FF;
+  --shadow-glow: 0 0 30px rgba(20, 241, 149, 0.15), 0 0 60px rgba(153, 69, 255, 0.12);
+}
+
+html, body, #root {
+  @apply h-full bg-[#0b0f1a] text-white;
+}
+
+.glass-card {
+  @apply rounded-2xl bg-white/5 backdrop-blur-md shadow-lg shadow-[var(--shadow-glow)];
+}
+
+.neon-gradient {
+  background: radial-gradient(1200px 600px at 20% 0%, color-mix(in oklab, var(--color-solana-purple) 35%, transparent), transparent),
+              radial-gradient(1000px 500px at 80% 10%, color-mix(in oklab, var(--color-solana-green) 20%, transparent), transparent),
+              radial-gradient(800px 400px at 50% 0%, color-mix(in oklab, var(--color-solana-teal) 18%, transparent), transparent);
+}

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+:root {
+  --violet: #8B5CF6;
+  --cyan: #06B6D4;
+  --green: #10B981;
+  --bg: #07080D;
+}
+
+html, body, #root { height: 100%; min-height: 100vh; background: var(--bg); color: white; }

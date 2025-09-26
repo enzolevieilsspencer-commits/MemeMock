@@ -1,0 +1,269 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    min-height: 100vh;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  * {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Transitions fluides pour les pages */
+  .page-transition {
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  }
+  
+  .page-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .page-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .page-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+:root {
+  --sol-green: #14F195;
+  --sol-teal: #00D18C;
+  --sol-purple: #9945FF;
+  --sol-cyan: #06B6D4;
+  --sol-emerald: #10B981;
+}
+
+/* utilitaires de glow et effets */
+.neon-border {
+  box-shadow: 0 0 0 1px rgba(153,69,255,0.3), 0 0 32px rgba(6,182,212,0.3);
+  animation: glow-pulse 3s ease-in-out infinite alternate;
+}
+
+.card-glow {
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,0.3),
+    0 10px 40px rgba(255,255,255,0.08), 
+    inset 0 0 60px rgba(153,69,255,0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+/* Animations */
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 0 1px rgba(153,69,255,0.3), 0 0 32px rgba(6,182,212,0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(153,69,255,0.5), 0 0 48px rgba(6,182,212,0.5);
+  }
+}
+
+/* Boutons avec animations fluides */
+.btn-primary {
+  background: linear-gradient(135deg, #9945FF 0%, #06B6D4 50%, #14F195 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(153, 69, 255, 0.4);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255,255,255,0.1);
+  transition: width 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:hover::before {
+  width: 100%;
+}
+
+/* Animations fluides pour les cartes */
+.card-smooth {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-smooth:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Transitions pour les inputs */
+.input-smooth {
+  transition: all 0.3s ease;
+}
+
+.input-smooth:focus {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 3px rgba(153, 69, 255, 0.1);
+}
+
+/* Animations ultra-rapides pour les graphiques */
+.chart-transition {
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chart-fast-transition {
+  transition: all 0.05s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Optimisation des animations de données */
+.data-update {
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.data-update-entering {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.data-update-entered {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.data-update-exiting {
+  opacity: 0;
+  transform: scale(1.02);
+}
+
+/* Styles pour le titre principal */
+.title-gradient {
+  background: linear-gradient(135deg, #9945FF 0%, #06B6D4 50%, #14F195 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.subtitle-gradient {
+  background: linear-gradient(135deg, #14F195 0%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(20, 241, 149, 0.4));
+}
+
+/* Animation de brillance pour le titre */
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.title-shimmer {
+  background: linear-gradient(
+    90deg,
+    #9945FF 0%,
+    #06B6D4 25%,
+    #14F195 50%,
+    #06B6D4 75%,
+    #9945FF 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(153, 69, 255, 0.3));
+}
+
+/* Effet de glow pour le titre */
+.title-glow {
+  text-shadow: 
+    0 0 10px rgba(153, 69, 255, 0.5),
+    0 0 20px rgba(6, 182, 212, 0.3),
+    0 0 30px rgba(20, 241, 149, 0.2);
+}
+
+/* Animation de pulsation subtile */
+@keyframes title-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(153, 69, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(153, 69, 255, 0.5));
+  }
+}
+
+.title-pulse {
+  animation: title-pulse 3s ease-in-out infinite;
+}
