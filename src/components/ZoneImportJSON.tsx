@@ -28,9 +28,9 @@ export function ZoneImportJSON(props: {
       if (format === 'mockape') {
         // Validation pour le format MockApe
         const requiredFields = ['pnlSol', 'solInvested', 'solReceived', 'timestamp', 'tokenName']
-        const invalidEntries = []
+        const invalidEntries: any[] = []
 
-        parsed.forEach((entry, index) => {
+        parsed.forEach((entry: any, index: number) => {
           const missingFields = requiredFields.filter(field => !(field in entry))
           if (missingFields.length > 0) {
             invalidEntries.push(`Entry ${index + 1}: missing fields (${missingFields.join(', ')})`)
@@ -51,9 +51,9 @@ export function ZoneImportJSON(props: {
       } else {
         // Validation pour le format de trades standard
         const requiredFields = ['date', 'asset', 'side', 'quantity', 'price']
-        const invalidTrades = []
+        const invalidTrades: any[] = []
 
-        parsed.forEach((trade, index) => {
+        parsed.forEach((trade: any, index: number) => {
           const missingFields = requiredFields.filter(field => !(field in trade))
           if (missingFields.length > 0) {
             invalidTrades.push(`Trade ${index + 1}: missing fields (${missingFields.join(', ')})`)

@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion'
-import { TabKey } from './Tabs'
+// import { TabKey } from './Tabs'
 // Import the monkey logo image from assets
 import monkeyLogo from '../assets/logo.png'
 
 interface HeaderProps {
-  active: TabKey | null
+  // active: TabKey | null
 }
 
 export function Header({ 
-  active
+  // active
 }: HeaderProps) {
 
 
@@ -54,7 +54,10 @@ export function Header({
                   onError={(e) => {
                     // Fallback to a placeholder if image doesn't exist
                     e.currentTarget.style.display = 'none'
-                    e.currentTarget.nextElementSibling.style.display = 'flex'
+                    const nextElement = e.currentTarget.nextElementSibling as HTMLElement
+                    if (nextElement) {
+                      nextElement.style.display = 'flex'
+                    }
                   }}
                 />
                 {/* Fallback placeholder */}

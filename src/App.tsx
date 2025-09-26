@@ -15,7 +15,7 @@ import { VuePerpetuals } from './views/VuePerpetuals'
 import { VueCryptoCharts } from './views/VueCryptoCharts'
 import { VueGenericPage } from './views/VueGenericPage'
 import { useAuth } from './hooks/useAuth'
-import { saveUserTradeData, getUserTradeData, saveOrUpdateCurrentSession, deleteUserTradeData } from './utils/authUtils'
+import { getUserTradeData, saveOrUpdateCurrentSession, deleteUserTradeData } from './utils/authUtils'
 // Import crypto logos for modals
 import bitcoinLogo from './assets/logo-btc.png'
 import ethereumLogo from './assets/logo-eth.png'
@@ -326,7 +326,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -350,7 +350,7 @@ function AppContent() {
           onNewSession={handleNewSession}
           onCloseSession={handleCloseSession}
           onDeleteSession={handleDeleteSession}
-          isAuthenticated={isAuthenticated}
+          isAuthenticated={!!isAuthenticated}
           userEmail={user?.email}
           userPseudo={user?.pseudo}
           userAvatar={user?.avatar}
@@ -411,7 +411,7 @@ function AppContent() {
           onNewSession={handleNewSession}
           onCloseSession={handleCloseSession}
           onDeleteSession={handleDeleteSession}
-          isAuthenticated={isAuthenticated}
+          isAuthenticated={!!isAuthenticated}
           userEmail={user?.email}
           userPseudo={user?.pseudo}
           userAvatar={user?.avatar}
@@ -472,7 +472,7 @@ function AppContent() {
           onNewSession={handleNewSession}
           onCloseSession={handleCloseSession}
           onDeleteSession={handleDeleteSession}
-          isAuthenticated={isAuthenticated}
+          isAuthenticated={!!isAuthenticated}
           userEmail={user?.email}
           userPseudo={user?.pseudo}
           userAvatar={user?.avatar}
@@ -534,7 +534,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -557,7 +557,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -580,7 +580,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -603,7 +603,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -626,7 +626,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -649,7 +649,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -672,7 +672,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -695,7 +695,7 @@ function AppContent() {
         onNewSession={handleNewSession}
         onCloseSession={handleCloseSession}
         onDeleteSession={handleDeleteSession}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={!!isAuthenticated}
         userEmail={user?.email}
         userPseudo={user?.pseudo}
         userAvatar={user?.avatar}
@@ -703,7 +703,6 @@ function AppContent() {
       />
       
       <Header 
-        active={active} 
       />
       <main className="relative mx-auto max-w-6xl px-4 py-4 pb-10 mt-12">
         <AnimatePresence mode="wait">
@@ -720,7 +719,7 @@ function AppContent() {
                       onAnalyze={() => {
                         navigate('/analysis')
                       }}
-                      isDataLoaded={isAuthenticated && user && rawJson !== null}
+                      isDataLoaded={Boolean(isAuthenticated && user && rawJson !== null)}
                     />
             </motion.div>
           )}

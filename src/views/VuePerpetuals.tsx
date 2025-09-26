@@ -50,55 +50,55 @@ export function VuePerpetuals({
   const { prices } = useCryptoPrices()
   const [selectedCrypto] = useState<'BTC' | 'ETH' | 'SOL'>('BTC')
   const { orderBook } = useOrderBook(selectedCrypto, prices[selectedCrypto].price)
-  const [balance, setBalance] = useState(10000) // Balance fictive de départ
-  const [positions, setPositions] = useState<Array<{
-    id: string
-    symbol: string
-    side: 'long' | 'short'
-    size: number
-    entryPrice: number
-    currentPrice: number
-    leverage: number
-    pnl: number
-    timestamp: Date
-  }>>([])
-  const [orderType] = useState<'market' | 'limit'>('market')
-  const [side] = useState<'long' | 'short'>('long')
-  const [size] = useState('')
-  const [leverage] = useState(1)
+  // const [balance, setBalance] = useState(10000) // Balance fictive de départ
+  // const [positions, setPositions] = useState<Array<{
+  //   id: string
+  //   symbol: string
+  //   side: 'long' | 'short'
+  //   size: number
+  //   entryPrice: number
+  //   currentPrice: number
+  //   leverage: number
+  //   pnl: number
+  //   timestamp: Date
+  // }>>([])
+  // const [orderType] = useState<'market' | 'limit'>('market')
+  // const [side] = useState<'long' | 'short'>('long')
+  // const [size] = useState('')
+  // const [leverage] = useState(1)
 
   // Données des perpétuels basées sur les prix en temps réel
-  const perpetualsData = {
-    BTC: {
-      symbol: 'BTC-PERP',
-      price: prices.BTC.price,
-      change24h: prices.BTC.change24h,
-      volume24h: prices.BTC.volume24h,
-      openInterest: 12500000000,
-      fundingRate: 0.00125,
-      nextFunding: '00:01:06'
-    },
-    ETH: {
-      symbol: 'ETH-PERP',
-      price: prices.ETH.price,
-      change24h: prices.ETH.change24h,
-      volume24h: prices.ETH.volume24h,
-      openInterest: 8500000000,
-      fundingRate: 0.00089,
-      nextFunding: '00:01:06'
-    },
-    SOL: {
-      symbol: 'SOL-PERP',
-      price: prices.SOL.price,
-      change24h: prices.SOL.change24h,
-      volume24h: prices.SOL.volume24h,
-      openInterest: 3200000000,
-      fundingRate: 0.00045,
-      nextFunding: '00:01:06'
-    }
-  }
+  // const perpetualsData = {
+  //   BTC: {
+  //     symbol: 'BTC-PERP',
+  //     price: prices.BTC.price,
+  //     change24h: prices.BTC.change24h,
+  //     volume24h: prices.BTC.volume24h,
+  //     openInterest: 12500000000,
+  //     fundingRate: 0.00125,
+  //     nextFunding: '00:01:06'
+  //   },
+  //   ETH: {
+  //     symbol: 'ETH-PERP',
+  //     price: prices.ETH.price,
+  //     change24h: prices.ETH.change24h,
+  //     volume24h: prices.ETH.volume24h,
+  //     openInterest: 8500000000,
+  //     fundingRate: 0.00089,
+  //     nextFunding: '00:01:06'
+  //   },
+  //   SOL: {
+  //     symbol: 'SOL-PERP',
+  //     price: prices.SOL.price,
+  //     change24h: prices.SOL.change24h,
+  //     volume24h: prices.SOL.volume24h,
+  //     openInterest: 3200000000,
+  //     fundingRate: 0.00045,
+  //     nextFunding: '00:01:06'
+  //   }
+  // }
 
-  const currentData = perpetualsData[selectedCrypto]
+  // const currentData = perpetualsData[selectedCrypto]
 
   // const formatNumber = (num: number) => {
   //   if (num >= 1000000000) {

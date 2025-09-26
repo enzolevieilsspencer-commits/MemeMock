@@ -96,12 +96,12 @@ export function calculateTradeAnalysis(trades: Trade[]): TradeAnalysis {
   
   // Meilleur et pire actif
   const assetEntries = Object.entries(tradesByAsset)
-  const bestAsset = assetEntries.length > 0 ? assetEntries.reduce((best, [asset, stats]) => 
-    stats.totalPnL > tradesByAsset[best].totalPnL ? asset : best
-  ) : ''
-  const worstAsset = assetEntries.length > 0 ? assetEntries.reduce((worst, [asset, stats]) => 
-    stats.totalPnL < tradesByAsset[worst].totalPnL ? asset : worst
-  ) : ''
+  const bestAsset = assetEntries.length > 0 ? assetEntries.reduce((best: [string, any], [asset, stats]: [string, any]) => 
+    stats.totalPnL > best[1].totalPnL ? [asset, stats] : best
+  )[0] : ''
+  const worstAsset = assetEntries.length > 0 ? assetEntries.reduce((worst: [string, any], [asset, stats]: [string, any]) => 
+    stats.totalPnL < worst[1].totalPnL ? [asset, stats] : worst
+  )[0] : ''
 
   // Statistiques par date
   const tradesByDate = calculateDailyStats(tradesWithPnL)

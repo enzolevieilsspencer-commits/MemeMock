@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Trade } from '../types/trades'
 import { format, parseISO } from 'date-fns'
-import { en } from 'date-fns/locale'
+// import { en } from 'date-fns/locale'
 
 interface TradesTableProps {
   trades: Trade[]
@@ -62,7 +62,7 @@ export function TradesTable({ trades }: TradesTableProps) {
   }
 
   const formatDate = (dateString: string) => {
-    return format(parseISO(dateString), 'MM/dd/yyyy HH:mm', { locale: en })
+    return format(parseISO(dateString), 'MM/dd/yyyy HH:mm')
   }
 
   const getPnLColor = (pnl: number) => {

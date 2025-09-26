@@ -216,17 +216,17 @@ export function PnLChart({ data, title = "Realized PNL", solPriceUsd }: PnLChart
     })
   }
 
-  const formatXAxisTick = (index: number) => {
-    // Afficher simplement le numéro du trade
-    if (index === -1) return 'Début'
-    return `Trade ${index + 1}`
-  }
+  // const formatXAxisTick = (index: number) => {
+  //   // Afficher simplement le numéro du trade
+  //   if (index === -1) return 'Début'
+  //   return `Trade ${index + 1}`
+  // }
 
   const formatTooltipValue = (value: number) => {
     return `${value >= 0 ? '+' : ''}$${value.toFixed(2)}`
   }
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload
       const isMockApe = !!data.tokenName

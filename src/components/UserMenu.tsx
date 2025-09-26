@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { getUserTradeData, UserTradeData } from '../utils/authUtils'
+import { getUserTradeData } from '../utils/authUtils'
 
 interface UserMenuProps {
   userEmail: string
@@ -17,7 +17,7 @@ interface UserMenuProps {
 
 export function UserMenu({ userEmail, userPseudo, userAvatar, userId, onLogout, onSettings, onLoadSession, onNewSession, onCloseSession, onDeleteSession }: UserMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [sessions, setSessions] = useState<UserTradeData[]>([])
+  const [sessions, setSessions] = useState<any[]>([])
   const [showSessions, setShowSessions] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 

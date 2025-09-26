@@ -1,5 +1,5 @@
 import { Trade, TradeAnalysis } from '../types/trades'
-import { format, parseISO, startOfMonth, endOfMonth, differenceInDays, subDays } from 'date-fns'
+import { format, parseISO, differenceInDays } from 'date-fns'
 
 export interface AdvancedInsights {
   // Métriques de performance
@@ -94,7 +94,7 @@ export class AdvancedTradeAnalyzer {
 
   public generateAdvancedInsights(): AdvancedInsights {
     const dailyReturns = this.calculateDailyReturns()
-    const monthlyReturns = this.calculateMonthlyReturns()
+    // const monthlyReturns = this.calculateMonthlyReturns()
     
     return {
       // Métriques de performance
@@ -155,18 +155,18 @@ export class AdvancedTradeAnalyzer {
     return sortedDates.map(date => dailyPnL.get(date) || 0)
   }
 
-  private calculateMonthlyReturns(): number[] {
-    const monthlyPnL = new Map<string, number>()
+  // private calculateMonthlyReturns(): number[] {
+  //   const monthlyPnL = new Map<string, number>()
     
-    this.trades.forEach(trade => {
-      const month = format(parseISO(trade.date), 'yyyy-MM')
-      const currentPnL = monthlyPnL.get(month) || 0
-      monthlyPnL.set(month, currentPnL + (trade.pnl || 0))
-    })
+  //   this.trades.forEach(trade => {
+  //     const month = format(parseISO(trade.date), 'yyyy-MM')
+  //     const currentPnL = monthlyPnL.get(month) || 0
+  //     monthlyPnL.set(month, currentPnL + (trade.pnl || 0))
+  //   })
     
-    const sortedMonths = Array.from(monthlyPnL.keys()).sort()
-    return sortedMonths.map(month => monthlyPnL.get(month) || 0)
-  }
+  //   const sortedMonths = Array.from(monthlyPnL.keys()).sort()
+  //   return sortedMonths.map(month => monthlyPnL.get(month) || 0)
+  // }
 
   private calculateSharpeRatio(dailyReturns: number[]): number {
     if (dailyReturns.length === 0) return 0
@@ -317,7 +317,7 @@ export class AdvancedTradeAnalyzer {
   }
 
   private calculateDiversificationScore(): number {
-    const assetCount = Object.keys(this.analysis.tradesByAsset).length
+    // const assetCount = Object.keys(this.analysis.tradesByAsset).length
     const totalTrades = this.analysis.totalTrades
     
     if (totalTrades === 0) return 0
@@ -350,15 +350,15 @@ export class AdvancedTradeAnalyzer {
   }
 
   private analyzeTrend(): 'bullish' | 'bearish' | 'neutral' {
-    const monthlyReturns = this.calculateMonthlyReturns()
+    // const monthlyReturns = this.calculateMonthlyReturns()
     
-    if (monthlyReturns.length < 2) return 'neutral'
+    // if (monthlyReturns.length < 2) return 'neutral'
     
-    const recentReturns = monthlyReturns.slice(-3) // 3 derniers mois
-    const avgRecent = recentReturns.reduce((sum, ret) => sum + ret, 0) / recentReturns.length
+    // const recentReturns = monthlyReturns.slice(-3) // 3 derniers mois
+    // const avgRecent = recentReturns.reduce((sum: any, ret: any) => sum + ret, 0) / recentReturns.length
     
-    if (avgRecent > 0.1) return 'bullish'
-    if (avgRecent < -0.1) return 'bearish'
+    // if (avgRecent > 0.1) return 'bullish'
+    // if (avgRecent < -0.1) return 'bearish'
     return 'neutral'
   }
 
@@ -398,9 +398,9 @@ export class AdvancedTradeAnalyzer {
       recommendations.push('Réduisez la taille de vos positions pour diminuer le risque')
     }
     
-    if (insights.winRate < 40) {
-      recommendations.push('Améliorez votre stratégie d\'entrée et de sortie')
-    }
+    // if (insights.winRate < 40) {
+    //   recommendations.push('Améliorez votre stratégie d\'entrée et de sortie')
+    // }
     
     if (insights.maxDrawdown > this.analysis.totalVolume * 0.2) {
       recommendations.push('Implémentez des stop-loss pour limiter les pertes')

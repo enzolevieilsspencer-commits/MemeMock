@@ -1,7 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
 import { TradeAnalysis } from '../types/trades'
 import { format, parseISO } from 'date-fns'
-import { en } from 'date-fns/locale'
+// import { en } from 'date-fns/locale'
 
 interface PerformanceChartProps {
   analysis: TradeAnalysis
@@ -20,7 +20,7 @@ export function PerformanceChart({ analysis }: PerformanceChartProps) {
   }
 
   const formatDate = (dateString: string) => {
-    return format(parseISO(dateString), 'MMM yyyy', { locale: en })
+    return format(parseISO(dateString), 'MMM yyyy')
   }
 
   const CustomTooltip = ({ active, payload, label }: any) => {
@@ -131,12 +131,12 @@ export function PerformanceChart({ analysis }: PerformanceChartProps) {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ asset, percentage }) => `${asset} (${percentage.toFixed(1)}%)`}
+                label={({ asset, percentage }: any) => `${asset} (${percentage.toFixed(1)}%)`}
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"
               >
-                {assetData.map((entry, index) => (
+                {assetData.map((_: any, index: number) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>

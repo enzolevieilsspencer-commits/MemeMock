@@ -50,7 +50,7 @@ export function useCryptoPrice(intervalMs: number, symbol: string = 'SOL'): Cryp
   })
   
   const abortRef = useRef<AbortController | null>(null)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const intervalRef = useRef<number | null>(null)
 
   const fetchPrice = async (signal?: AbortSignal) => {
     try {

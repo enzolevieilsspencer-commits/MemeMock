@@ -1,4 +1,20 @@
-import { PnLDataPoint } from '../components/PnLChart'
+// import { PnLDataPoint } from '../components/PnLChart'
+
+export interface PnLDataPoint {
+  timestamp: number
+  pnl: number
+  cumulativePnL: number
+  date?: string
+  cumulativePnl?: number
+  tokenName?: string
+  asset?: string
+  fees?: number
+  isDayStart?: boolean
+  solInvested?: number
+  solReceived?: number
+  side?: string
+  quantity?: number
+}
 
 export interface MockApeEntry {
   pnlSol: number
@@ -26,7 +42,7 @@ export function convertMockApeToPnLData(data: MockApeEntry[], solPriceUsd: numbe
   let cumulativePnlSol = 0
   const pnlData: PnLDataPoint[] = []
 
-  sortedData.forEach((entry, index) => {
+  sortedData.forEach((entry: any) => {
     // Garder le PnL en SOL pour le calcul cumulatif
     cumulativePnlSol += entry.pnlSol
     
@@ -34,6 +50,7 @@ export function convertMockApeToPnLData(data: MockApeEntry[], solPriceUsd: numbe
       date: new Date(entry.timestamp).toISOString(),
       timestamp: entry.timestamp,
       pnl: entry.pnlSol, // PnL en SOL
+      cumulativePnL: cumulativePnlSol * solPriceUsd, // Cumulatif converti en USD
       cumulativePnl: cumulativePnlSol * solPriceUsd, // Cumulatif converti en USD
       // Ajouter des informations supplémentaires pour le debug
       tokenName: entry.tokenName,
@@ -72,12 +89,12 @@ export function convertStandardTradesToPnLData(trades: StandardTrade[]): PnLData
       date: trade.date,
       timestamp: new Date(trade.date).getTime(),
       pnl: pnl,
+      cumulativePnL: cumulativePnl,
       cumulativePnl: cumulativePnl,
       // Ajouter des informations supplémentaires
       asset: trade.asset,
       side: trade.side,
-      quantity: trade.quantity,
-      price: trade.price
+      quantity: trade.quantity
     })
   })
 

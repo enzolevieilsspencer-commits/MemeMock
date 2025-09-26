@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useCryptoPrices } from '../hooks/useCryptoPrices'
 import { PnLTable } from '../components/PnLTable'
 import { convertJsonToPnLData } from '../utils/pnlDataConverter'

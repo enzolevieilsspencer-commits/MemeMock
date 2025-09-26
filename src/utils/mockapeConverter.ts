@@ -9,7 +9,7 @@ export interface MockApeData {
 }
 
 export function convertMockApeToTrades(mockapeData: MockApeData[]): Trade[] {
-  return mockapeData.map((data, index) => {
+  return mockapeData.map((data: any) => {
     // Calculer les trades basés sur les données MockApe
     const date = new Date(data.timestamp).toISOString()
     const asset = data.tokenName

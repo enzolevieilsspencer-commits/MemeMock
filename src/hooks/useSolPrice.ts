@@ -43,24 +43,24 @@ async function fetchFromCryptoCompare(signal?: AbortSignal): Promise<number> {
   }
 }
 
-async function fetchFromCoincap(signal?: AbortSignal): Promise<number> {
-  try {
-    const res = await fetch('https://api.coincap.io/v2/assets/solana', { 
-      signal,
-      headers: {
-        'Accept': 'application/json',
-      }
-    })
-    if (!res.ok) throw new Error(`CoinCap HTTP ${res.status}`)
-    const data = await res.json() as { data?: { priceUsd?: string } }
-    const price = data?.data?.priceUsd ? Number(data.data.priceUsd) : NaN
-    if (!Number.isFinite(price) || price <= 0) throw new Error('CoinCap: Invalid price data')
-    return price
-  } catch (e) {
-    console.warn('CoinCap fetch failed:', e)
-    throw e
-  }
-}
+// async function fetchFromCoincap(signal?: AbortSignal): Promise<number> {
+//   try {
+//     const res = await fetch('https://api.coincap.io/v2/assets/solana', { 
+//       signal,
+//       headers: {
+//         'Accept': 'application/json',
+//       }
+//     })
+//     if (!res.ok) throw new Error(`CoinCap HTTP ${res.status}`)
+//     const data = await res.json() as { data?: { priceUsd?: string } }
+//     const price = data?.data?.priceUsd ? Number(data.data.priceUsd) : NaN
+//     if (!Number.isFinite(price) || price <= 0) throw new Error('CoinCap: Invalid price data')
+//     return price
+//   } catch (e) {
+//     console.warn('CoinCap fetch failed:', e)
+//     throw e
+//   }
+// }
 
 async function fetchSolPrice(signal?: AbortSignal): Promise<number> {
   // Utiliser CryptoCompare - PAS DE FALLBACK
