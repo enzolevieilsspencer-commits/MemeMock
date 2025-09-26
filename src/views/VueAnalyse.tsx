@@ -5,10 +5,9 @@ import { convertJsonToPnLData } from '../utils/pnlDataConverter'
 
 interface VueAnalyseProps {
   jsonData?: string | null
-  onShowImport?: () => void
 }
 
-export function VueAnalyse({ jsonData, onShowImport }: VueAnalyseProps) {
+export function VueAnalyse({ jsonData }: VueAnalyseProps) {
   const { prices } = useCryptoPrices()
 
   // Calculate detailed statistics

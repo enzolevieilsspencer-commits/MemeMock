@@ -5,10 +5,9 @@ import { useCryptoPrices } from '../hooks/useCryptoPrices'
 
 interface VueGraphiquesProps {
   jsonData?: string | null
-  onShowImport?: () => void
 }
 
-export function VueGraphiques({ jsonData, onShowImport }: VueGraphiquesProps) {
+export function VueGraphiques({ jsonData }: VueGraphiquesProps) {
   const { prices } = useCryptoPrices()
   
   const pnlData = useMemo(() => {

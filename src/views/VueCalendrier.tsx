@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { useCryptoPrices } from '../hooks/useCryptoPrices'
-import { convertJsonToPnLData, detectDataFormat } from '../utils/pnlDataConverter'
+import { detectDataFormat } from '../utils/pnlDataConverter'
 
 interface VueCalendrierProps {
   jsonData?: string | null
@@ -84,7 +84,7 @@ export function VueCalendrier({ jsonData, onShowImport, isModal = false }: VueCa
     const month = currentDate.getMonth()
     
     const firstDay = new Date(year, month, 1)
-    const lastDay = new Date(year, month + 1, 0)
+    // const lastDay = new Date(year, month + 1, 0)
     const startDate = new Date(firstDay)
     startDate.setDate(startDate.getDate() - firstDay.getDay())
     

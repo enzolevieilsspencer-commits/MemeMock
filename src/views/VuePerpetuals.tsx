@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { FixedTopTaskbar } from '../components/FixedTopTaskbar'
 import { FixedTaskbar } from '../components/FixedTaskbar'
 import { TabKey } from '../components/Tabs'
 import { useCryptoPrices } from '../hooks/useCryptoPrices'
 import { useOrderBook } from '../hooks/useOrderBook'
-import { RealtimeTransactions } from '../components/RealtimeTransactions'
 
 // Déclaration TypeScript pour TradingView
 declare global {
