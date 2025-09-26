@@ -47,9 +47,9 @@ export function VuePerpetuals({
   userId
 }: VuePerpetualsProps) {
   const navigate = useNavigate()
-  const { prices, isLoading, refetch } = useCryptoPrices()
-  const [selectedCrypto, setSelectedCrypto] = useState<'BTC' | 'ETH' | 'SOL'>('BTC')
-  const { orderBook, isLoading: orderBookLoading } = useOrderBook(selectedCrypto, prices[selectedCrypto].price)
+  const { prices } = useCryptoPrices()
+  const [selectedCrypto] = useState<'BTC' | 'ETH' | 'SOL'>('BTC')
+  const { orderBook } = useOrderBook(selectedCrypto, prices[selectedCrypto].price)
   const [balance, setBalance] = useState(10000) // Balance fictive de départ
   const [positions, setPositions] = useState<Array<{
     id: string
@@ -62,10 +62,10 @@ export function VuePerpetuals({
     pnl: number
     timestamp: Date
   }>>([])
-  const [orderType, setOrderType] = useState<'market' | 'limit'>('market')
-  const [side, setSide] = useState<'long' | 'short'>('long')
-  const [size, setSize] = useState('')
-  const [leverage, setLeverage] = useState(1)
+  const [orderType] = useState<'market' | 'limit'>('market')
+  const [side] = useState<'long' | 'short'>('long')
+  const [size] = useState('')
+  const [leverage] = useState(1)
 
   // Données des perpétuels basées sur les prix en temps réel
   const perpetualsData = {
@@ -100,16 +100,16 @@ export function VuePerpetuals({
 
   const currentData = perpetualsData[selectedCrypto]
 
-  const formatNumber = (num: number) => {
-    if (num >= 1000000000) {
-      return `$${(num / 1000000000).toFixed(1)}B`
-    } else if (num >= 1000000) {
-      return `$${(num / 1000000).toFixed(1)}M`
-    } else if (num >= 1000) {
-      return `$${(num / 1000).toFixed(1)}K`
-    }
-    return `$${num.toFixed(2)}`
-  }
+  // const formatNumber = (num: number) => {
+  //   if (num >= 1000000000) {
+  //     return `$${(num / 1000000000).toFixed(1)}B`
+  //   } else if (num >= 1000000) {
+  //     return `$${(num / 1000000).toFixed(1)}M`
+  //   } else if (num >= 1000) {
+  //     return `$${(num / 1000).toFixed(1)}K`
+  //   }
+  //   return `$${num.toFixed(2)}`
+  // }
 
 
   // Charger le widget TradingView pour BTC
@@ -212,56 +212,56 @@ export function VuePerpetuals({
   }, [])
 
   // Calculer le PnL total
-  const totalPnL = positions.reduce((sum, position) => {
-    const priceChange = position.side === 'long' 
-      ? (currentData.price - position.entryPrice) / position.entryPrice
-      : (position.entryPrice - currentData.price) / position.entryPrice
+  // const totalPnL = positions.reduce((sum, position) => {
+  //   const priceChange = position.side === 'long' 
+  //     ? (currentData.price - position.entryPrice) / position.entryPrice
+  //     : (position.entryPrice - currentData.price) / position.entryPrice
     
-    return sum + (position.size * position.leverage * priceChange)
-  }, 0)
+  //   return sum + (position.size * position.leverage * priceChange)
+  // }, 0)
 
-  const handlePlaceOrder = () => {
-    if (!size || parseFloat(size) <= 0) return
+  // const handlePlaceOrder = () => {
+  //   if (!size || parseFloat(size) <= 0) return
 
-    const orderSize = parseFloat(size)
-    const requiredMargin = (orderSize * currentData.price) / leverage
+  //   const orderSize = parseFloat(size)
+  //   const requiredMargin = (orderSize * currentData.price) / leverage
 
-    if (requiredMargin > balance) {
-      alert('Balance insuffisante pour cette position')
-      return
-    }
+  //   if (requiredMargin > balance) {
+  //     alert('Balance insuffisante pour cette position')
+  //     return
+  //   }
 
-    const newPosition = {
-      id: Date.now().toString(),
-      symbol: currentData.symbol,
-      side,
-      size: orderSize,
-      entryPrice: currentData.price,
-      currentPrice: currentData.price,
-      leverage,
-      pnl: 0,
-      timestamp: new Date()
-    }
+  //   const newPosition = {
+  //     id: Date.now().toString(),
+  //     symbol: currentData.symbol,
+  //     side,
+  //     size: orderSize,
+  //     entryPrice: currentData.price,
+  //     currentPrice: currentData.price,
+  //     leverage,
+  //     pnl: 0,
+  //     timestamp: new Date()
+  //   }
 
-    setPositions(prev => [...prev, newPosition])
-    setBalance(prev => prev - requiredMargin)
-    setSize('')
-  }
+  //   setPositions(prev => [...prev, newPosition])
+  //   setBalance(prev => prev - requiredMargin)
+  //   setSize('')
+  // }
 
-  const handleClosePosition = (positionId: string) => {
-    const position = positions.find(p => p.id === positionId)
-    if (!position) return
+  // const handleClosePosition = (positionId: string) => {
+  //   const position = positions.find(p => p.id === positionId)
+  //   if (!position) return
 
-    const priceChange = position.side === 'long' 
-      ? (currentData.price - position.entryPrice) / position.entryPrice
-      : (position.entryPrice - currentData.price) / position.entryPrice
+  //   const priceChange = position.side === 'long' 
+  //     ? (currentData.price - position.entryPrice) / position.entryPrice
+  //     : (position.entryPrice - currentData.price) / position.entryPrice
     
-    const pnl = position.size * position.leverage * priceChange
-    const marginReturn = (position.size * position.entryPrice) / position.leverage
+  //   const pnl = position.size * position.leverage * priceChange
+  //   const marginReturn = (position.size * position.entryPrice) / position.leverage
 
-    setBalance(prev => prev + marginReturn + pnl)
-    setPositions(prev => prev.filter(p => p.id !== positionId))
-  }
+  //   setBalance(prev => prev + marginReturn + pnl)
+  //   setPositions(prev => prev.filter(p => p.id !== positionId))
+  // }
 
   const handleCryptoClick = (symbol: 'BTC' | 'ETH' | 'SOL') => {
     navigate(`/crypto/${symbol.toLowerCase()}`)
